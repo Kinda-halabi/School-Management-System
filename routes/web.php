@@ -22,5 +22,5 @@ Route::group(
         {
             return view('dashboard');
         });
-        Route::resource('grade', 'GradeController');
+       Route::resource('grade', 'GradeController');
     });
