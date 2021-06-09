@@ -1,10 +1,13 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreGrades;
+use App\Models\Grade;
+use Dotenv\Result\Success;
 use Illuminate\Http\Request;
 
-class GradeController extends Controller 
+class GradeController extends Controller
 {
 
   /**
@@ -14,7 +17,8 @@ class GradeController extends Controller
    */
   public function index()
   {
-    
+    $grades=Grade::all();
+    return view('pages.Grades.Grades',['grades'=>$grades]);
   }
 
   /**
@@ -24,7 +28,7 @@ class GradeController extends Controller
    */
   public function create()
   {
-    
+
   }
 
   /**
@@ -32,9 +36,33 @@ class GradeController extends Controller
    *
    * @return Response
    */
-  public function store(Request $request)
+  public function store(StoreGrades $request)
   {
-    
+      try{
+
+        $validated = $request->validated();
+        $grade=new Grade();
+        $translations = [
+            'en' => $request->Name_en,
+            'nl' => $request->Name
+         ];
+         $grade->setTranslations('Name', $translations);
+
+
+        //$grade->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
+        $grade->Notes=$request->Notes;
+        $grade->save();
+        toastr()->success(trans('message.success'));
+
+        return redirect()->route('grades.index');
+
+      }
+      catch(\Exception $e){
+        return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+
+      }
+
+
   }
 
   /**
@@ -45,7 +73,7 @@ class GradeController extends Controller
    */
   public function show($id)
   {
-    
+
   }
 
   /**
@@ -56,7 +84,7 @@ class GradeController extends Controller
    */
   public function edit($id)
   {
-    
+
   }
 
   /**
@@ -67,7 +95,7 @@ class GradeController extends Controller
    */
   public function update($id)
   {
-    
+
   }
 
   /**
@@ -78,9 +106,9 @@ class GradeController extends Controller
    */
   public function destroy($id)
   {
-    
+
   }
-  
+
 }
 
 ?>
