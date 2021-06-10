@@ -22,7 +22,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
         {
             return view('dashboard');
         });
-       Route::resource('grade', 'GradeController');
+        Route::resource('grades', GradeController::class);
     });
 
 
