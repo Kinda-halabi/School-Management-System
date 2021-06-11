@@ -43,14 +43,14 @@ class GradeController extends Controller
         $validated = $request->validated();
         $grade=new Grade();
         $translations = [
-            'en' => $request->Name_en,
-            'nl' => $request->Name
+            'en' => $request->name_en,
+            'nl' => $request->name
          ];
-         $grade->setTranslations('Name', $translations);
+         $grade->setTranslations('name', $translations);
 
 
-        //$grade->Name = ['en' => $request->Name_en, 'ar' => $request->Name];
-        $grade->Notes=$request->Notes;
+        //$grade->name = ['en' => $request->name_en, 'ar' => $request->name];
+        $grade->notes=$request->notes;
         $grade->save();
         toastr()->success(trans('message.success'));
 

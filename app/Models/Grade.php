@@ -8,8 +8,8 @@ class Grade extends Model
 {
 
     use HasTranslations;
-    public $translatable = ['Name'];
-    protected $fillable=['Name','Notes'];
+    public $translatable = ['name'];
+    protected $fillable=['name','notes'];
     protected $table = 'Grades';
     public $timestamps = true;
 
