@@ -13,7 +13,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(
+    Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
@@ -24,3 +24,5 @@ Route::group(
         });
         Route::resource('grades', GradeController::class);
     });
+
+
